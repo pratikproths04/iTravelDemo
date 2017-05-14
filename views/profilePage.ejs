@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<% include partials/metaTags.ejs %>
+	    <link rel="stylesheet" href="/stylesheets/styleProfile.css" />
+	    <title>Intelligent Travel Application | Profile</title>
+	    <% include partials/headTags.ejs %>
+	    <script src="../javascripts/angular/profileController.js"> </script>
+	</head>
+	<body ng-app="profileApp" ng-controller="profileController" ng-init="init();">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logotext" href="#" style = " color:#E43B2C;">Intelligent Travel Agent</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">      
+                    </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/home"><span class="glyphicon glyphicon-home"
+                                 aria-hidden="true"></span> Home</a></li>
+                        <li class="active"><a href="#">
+                            <span class="fa fa-user"></span> Profile</a>
+                        </li>
+                        <li><a href="/logOut">
+                            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+        <div class="container" style="min-width: 100%;"> 
+           <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 side-tab-container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 side-tab-menu">
+                      <div class="list-group">
+                        <a href="#" class="list-group-item active text-center" style="margin-top: -5px;">
+                          <h4 class="fa fa-user fa-2x"></h4><br/>Personal
+                        </a>
+                        <a href="#" class="list-group-item text-center" style="margin-top: -5px;">
+                          <h4 class="glyphicon glyphicon-plane"></h4><br/>Flight
+                        </a><!-- 
+                        <a href="#" class="list-group-item text-center">
+                          <h4 class="glyphicon glyphicon-road"></h4><br/>Train
+                        </a> -->
+                        <a href="#" class="list-group-item text-center" style="margin-top: -5px;">
+                          <h4 class="fa fa-car fa-2x"></h4><br/>Car Rental
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                          <h4 class="glyphicon glyphicon-home"></h4><br/>Hotel
+                        </a>
+                        <a href="#" class="list-group-item text-center" style="margin-top: -5px;">
+                          <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Credit Card
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 side-tab" >
+                        <!-- Personal section -->
+                        <div class="side-tab-content active">
+                            <div id="wrap">
+                                <div class="inner">
+                                    <!-- <center>
+                                      <h1 class="fa fa-user fa-2x" style="font-size:14em;color:#55518a"></h1>
+                                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                                      <h3 style="margin-top: 0;color:#55518a">Personal Details</h3>
+                                    </center> -->
+                                    <legend>Personal Details:</legend>
+                                    <div>
+                                        <div class="col-sm-10 col-sm-offset-2" ng-show="show_personal_form == true" style="padding: 0px 5px 0px 5px;">
+                                            <form name="personal_form">
+                                            <div><label class="col-sm-3 control-label">First Name:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="first_name" name="first_name" ng-model="first_name" value="{{first_name}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Last Name:</label></div><div class="col-sm-7"><input  class="form-control col-sm-12" type="text" id="last_name" name="last_name" ng-model="last_name" value="{{last_name}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Mobile Number:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="mobile" name="mobile" ng-model="mobile" value="{{mobile}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Date Of Birth:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="dob" name="dob" ng-model="dob" value="{{dob}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Gender:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="gender" name="gender" ng-model="gender" value="{{gender}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Address Line 1:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="address_line_1" name="address_line_1" ng-model="address_line_1" value="{{address_line_1}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Address Line 2:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="address_line_2" name="address_line_2" ng-model="address_line_2" value="{{address_line_2}}"/></div>
+                                            <div><label class="col-sm-3 control-label">City:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="city" name="city" ng-model="city" value="{{city}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Region:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="region" name="region" ng-model="region" value="{{region}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Postal Code:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="postal_code" name="postal_code" ng-model="postal_code" value="{{postal_code}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Country:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="country" name="country" ng-model="country" value="{{country}}"/></div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-10 col-sm-offset-3" ng-show="show_personal_form == false">
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">First Name:</label>{{first_name}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Last Name:</label>{{last_name}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Mobile Number:</label>{{mobile}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Date Of Birth:</label>{{dob}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Gender:</label>{{gender}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Address Line 1:</label>{{address_line_1}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Address Line 2:</label>{{address_line_2}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">City:</label>{{city}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Region:</label>{{region}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Postal Code:</label>{{postal_code}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Country:</label>{{country}}</div>
+                                        </div>
+                                    </div> 
+                                    <div align="center" class="col-sm-8 col-sm-offset-1" style="margin-top: 60px;">
+                                        <button type="button" class="btn btn-warning"  ng-click="edit_personal_form();">Edit</button>
+                                        <button type="button" class="btn btn-success"  ng-click="save_personal_form();">Save</button>
+                                        <button type="button" class="btn btn-info"  ng-click="cancel_personal_form();">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- flight section -->
+                        <div class="side-tab-content">
+                            <!-- <center>
+                              <h1 class="glyphicon glyphicon-plane" style="font-size:14em;color:#55518a"></h1>
+                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                              <h3 style="margin-top: 0;color:#55518a">Flight Reservation</h3>
+                            </center> -->
+                            <legend>Flight Details:</legend>
+                            <div>
+                                        <div class="col-sm-10 col-sm-offset-2" ng-show="show_flight_form == true">
+                                            <form name="flight_form">
+                                            <div><label class="col-sm-3 control-label">Airline Name:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="airline_name" name="airline_name" ng-model="airline_name" value="{{airline_name}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Airline Class:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="airline_class" name="airline_class" ng-model="airline_class" value="{{airline_class}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Airline Days:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="airline_days" name="airline_days" ng-model="airline_days" value="{{airline_days}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Airline Time:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="airline_time" name="airline_time" ng-model="airline_time" value="{{airline_time}}"/></div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-10 col-sm-offset-3" ng-show="show_flight_form == false">
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Airline Name:</label>{{airline_name}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Airline Class:</label>{{airline_class}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Airline Days:</label>{{airline_days}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Airline Time:</label>{{airline_time}}</div>
+                                        </div>
+                                    </div> 
+                                    <div align="center" class="col-sm-8 col-sm-offset-1" style="margin-top: 60px;">
+                                        <button type="button" class="btn btn-warning"  ng-click="edit_flight_form();">Edit</button>
+                                        <button type="button" class="btn btn-success"  ng-click="save_flight_form();">Save</button>
+                                        <button type="button" class="btn btn-info"  ng-click="cancel_flight_form();">Cancel</button>
+                                    </div>
+                        </div>
+
+                        <!-- Car Rental Section -->
+                        <div class="side-tab-content">
+                            <!-- <center>
+                              <h1 class="fa fa-car" style="font-size:12em;color:#55518a"></h1>
+                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                              <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
+                            </center>-->
+                            <legend>Car Details:</legend>
+                            <div>
+                                        <div class="col-sm-10 col-sm-offset-2" ng-show="show_car_form == true">
+                                            <form name="car_form">
+                                            <div><label class="col-sm-3 control-label">Car Model:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="car_model" name="car_model" ng-model="car_model" value="{{car_model}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Car Rental Company:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="car_rental_company" name="car_rental_company" ng-model="car_rental_company" value="{{car_rental_company}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Car Mileage:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="car_mileage" name="car_mileage" ng-model="car_mileage" value="{{car_mileage}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Car Price:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="car_price" name="car_price" ng-model="car_price" value="{{car_price}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Car Features:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="car_features" name="car_features" ng-model="car_features" value="{{car_features}}"/></div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-10 col-sm-offset-3" ng-show="show_car_form == false">
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Car Model:</label>{{car_model}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Car Rental Company:</label>{{car_rental_company}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Car Mileage:</label>{{car_mileage}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Car Price:</label>{{car_price}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Car Features:</label>{{car_features}}</div>
+                                        </div>
+                                    </div> 
+                                    <div align="center" class="col-sm-8 col-sm-offset-1" style="margin-top: 60px;">
+                                        <button type="button" class="btn btn-warning"  ng-click="edit_car_form();">Edit</button>
+                                        <button type="button" class="btn btn-success"  ng-click="save_car_form();">Save</button>
+                                        <button type="button" class="btn btn-info"  ng-click="cancel_car_form();">Cancel</button>
+                                    </div>
+                        </div>
+                         <!-- hotel search -->
+                        <div class="side-tab-content">
+                            <!-- <center>
+                              <h1 class="glyphicon glyphicon-home" style="font-size:12em;color:#55518a"></h1>
+                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                              <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
+                            </center>-->
+                            <legend>Hotel Details:</legend>
+                            <div>
+                                        <div class="col-sm-10 col-sm-offset-2" ng-show="show_hotel_form == true">
+                                            <form name="hotel_form">
+                                            <div><label class="col-sm-3 control-label">Hotel Star Rating:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="hotel_star_rating" name="hotel_star_rating" ng-model="hotel_star_rating" value="{{hotel_star_rating}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Hotel Location:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="hotel_location" name="hotel_location" ng-model="hotel_location" value="{{hotel_location}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Hotel Price:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="hotel_price" name="hotel_price" ng-model="hotel_price" value="{{hotel_price}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Food Type:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="food_type" name="food_type" ng-model="food_type" value="{{food_type}}"/></div>
+                                            <div><label class="col-sm-3 control-label">Food Cuisine:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="food_cuisine" name="food_cuisine" ng-model="food_cuisine" value="{{food_cuisine}}"/></div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-10 col-sm-offset-3"  ng-show="show_hotel_form == false">
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Hotel Star Rating:</label>{{hotel_star_rating}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Hotel Location:</label>{{hotel_location}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Hotel Price:</label>{{hotel_price}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Food Type:</label>{{food_type}}</div>
+                                            <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Food Cuisine:</label>{{food_cuisine}}</div>
+                                        </div>
+                                    </div> 
+                                    <div align="center" class="col-sm-8 col-sm-offset-1" style="margin-top: 60px;">
+                                        <button type="button" class="btn btn-warning"  ng-click="edit_hotel_form();">Edit</button>
+                                        <button type="button" class="btn btn-success"  ng-click="save_hotel_form();">Save</button>
+                                        <button type="button" class="btn btn-info"  ng-click="cancel_hotel_form();">Cancel</button>
+                                    </div>
+                        </div>
+                        <div class="side-tab-content">
+                            <!-- <center>
+                              <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                              <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                            </center> -->
+                            <legend>Credit Card Details:</legend>
+                            <div>
+                                <div class="col-sm-10 col-sm-offset-2" ng-show="show_card_form == true">
+                                    <form name="card_form">
+                                    <div><label class="col-sm-3 control-label">Card Holder Name:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="card_holder_name" name="card_holder_name" ng-model="card_holder_name" value="{{card_holder_name}}"/></div>
+                                    <div><label class="col-sm-3 control-label">Card Number:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="card_number" name="card_number" ng-model="card_number" value="{{card_number}}"/></div>
+                                    <div><label class="col-sm-3 control-label">Expiry Month:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="expiry_month" name="expiry_month" ng-model="expiry_month" value="{{expiry_month}}"/></div>
+                                    <div><label class="col-sm-3 control-label">Expiry Month:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="expiry_year" name="expiry_year" ng-model="expiry_year" value="{{expiry_year}}"/></div>
+                                    <div><label class="col-sm-3 control-label">CVV:</label></div><div class="col-sm-7"><input class="form-control col-sm-12" type="text" id="cvv" name="cvv" ng-model="cvv" value="{{cvv}}"/></div>
+                                    </form>
+                                </div>
+                                <div class="col-sm-10 col-sm-offset-3" ng-show="show_card_form == false">
+                                    <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Card Holder Name:</label>{{card_holder_name}}</div>
+                                    <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Card Number:</label>{{card_number}}</div>
+                                    <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Expiry Month:</label>{{expiry_month}}</div>
+                                    <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">Expiry Year:</label>{{expiry_year}}</div>
+                                    <div class="col-sm-10 col-offset-0"><label class="col-sm-4 control-label">CVV:</label>{{cvv}}</div>
+                                </div>
+                            </div> 
+                            <div align="center" class="col-sm-8 col-sm-offset-1" style="margin-top: 60px;">
+                                <button type="button" class="btn btn-warning"  ng-click="edit_card_form();">Edit</button>
+                                <button type="button" class="btn btn-success"  ng-click="save_card_form();">Save</button>
+                                <button type="button" class="btn btn-info"  ng-click="cancel_card_form();">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("div.side-tab-menu>div.list-group>a").click(function(e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.side-tab>div.side-tab-content").removeClass("active");
+                $("div.side-tab>div.side-tab-content").eq(index).addClass("active");
+            });
+        });
+    </script>
+</html>
