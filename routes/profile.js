@@ -94,12 +94,14 @@ exports.updateUserData = function(req,res) {
     var airline_name = req.param("airline_name");
     var airline_class = req.param("airline_class");
     var airline_days = req.param("airline_days");
+    //console.log("airline_days", airline_days);
     var airline_time = req.param("airline_time");
     var car_model = req.param("car_model");
     var car_rental_company = req.param("car_rental_company");
     var car_mileage = req.param("car_mileage");
     var car_price = req.param("car_price");
     var car_features = req.param("car_features");
+    //console.log("car_features", car_features);
     var hotel_star_rating = req.param("hotel_star_rating");
     var hotel_location = req.param("hotel_location");
     var hotel_price = req.param("hotel_price");
@@ -131,7 +133,7 @@ exports.updateUserData = function(req,res) {
 			"flight": {
 				"airline_name": airline_name,
 				"airline_class": airline_class,
-				"airline_days": airline_days,
+				"airline_days":  airline_days,
 				"airline_time": airline_time
 			},
 			"hotel": {
@@ -144,7 +146,7 @@ exports.updateUserData = function(req,res) {
 				"car_rental_company": car_rental_company,
 				"car_mileage": car_mileage,
 				"car_price": car_price,
-				"car_features": car_features
+				"car_features":  car_features
 			},
 			"food_cuisine": food_cuisine,
 			"food_type": food_type
@@ -210,7 +212,6 @@ exports.updateUserData = function(req,res) {
         });
     });
 };
-
 /*
 function simpleStringify (object){
     var simpleObject = {};
