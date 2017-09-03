@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 function getConnection(){
 	var connection = mysql.createConnection({
-	    host     : 'localhost',
-	    user     : 'root',
-	    password : 'root',
-	    database : 'itraveldb',
+	    host     : '34.224.101.89',
+	    user     : 'itraveldb-user',
+	    password : 'itraveldb',
+	    database : 'iTravelDB',
 	    port	 : 3306
 	});
 	return connection;

@@ -19,7 +19,7 @@ var express = require('express')
   , profile = require('./routes/profile');
 
 /** URL for the sessions collections in mongoDB **/
-var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
 var expressSession = require("express-session");
 var mongoStore = require("connect-mongo")(expressSession);
 var app = express();

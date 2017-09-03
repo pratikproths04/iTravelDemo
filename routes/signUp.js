@@ -1,6 +1,6 @@
 var mongo = require("./mongo");
 var mysql = require("./mysql");
-var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var key = '00%i%Travel%System%00';
@@ -22,8 +22,8 @@ exports.goToSignUpPage = function(req,res){
 
 exports.afterSignUpPage = function(req,res){
 	console.log("In afterSignUpPage");
-	console.log(req.body);
-	console.log("req--->"+JSON.stringify(req.body));	
+	//console.log(req.body);
+	//console.log("req--->"+JSON.stringify(req.body));
 	if(!req.param("email") || !req.param("password") || !req.param("first_name") || !req.param("last_name") || !req.param("mobile") || !req.param("dob") ||
 		!req.param("gender")){
 		console.log("Unable to get all details from User");
@@ -105,33 +105,33 @@ exports.afterSignUpPage = function(req,res){
             	"food_type" : food_type
             }
 		};
-		console.log("msg_payload"+JSON.stringify(msg_payload));
+		//console.log("msg_payload"+JSON.stringify(msg_payload));
 
 		mongo.connect(mongoSessionConnectURL, function(){
 			var coll = mongo.collection('users');
-			console.log('Connected to mongo at: ' + mongoSessionConnectURL);
+			//console.log('Connected to mongo at: ' + mongoSessionConnectURL);
 			coll.insertOne(msg_payload, function(err, user){
 				if (user) {
 					console.log("User details inserted sucessfully");
 					json_responses = {"statusCode" : 200, "message": "Inserted sucessfully"};
 					if(card_holder_name != undefined && card_number != undefined && expiry_month != undefined && expiry_year != undefined && cvv != undefined) {
                         coll.findOne({"email": email}, function (err, user) {
-                            console.log("Finding user");
-                            console.log("user----->" + JSON.stringify(user));
+                            //console.log("Finding user");
+                            //console.log("user----->" + JSON.stringify(user));
                             if (user) {
                                 var userId = user._id;
-                                console.log("userId retrieved");
-                                console.log("userId--->" + userId);
+                                //console.log("userId retrieved");
+                                //console.log("userId--->" + userId);
                                 var card_number_enc = crypto.createCipher("aes-256-ctr", key).update(card_number, "utf-8", "hex");
-                                console.log("card_number_enc--->" + card_number_enc);
+                                //console.log("card_number_enc--->" + card_number_enc);
                                 var exp_date = new Date('20' + expiry_year + '-' + expiry_month + '-' + 01).toISOString().slice(0, 10);
-                                console.log("exp_date--->" + exp_date);
+                                //console.log("exp_date--->" + exp_date);
                                 var cvv_enc = crypto.createCipher("aes-256-ctr", key).update(cvv, "utf-8", "hex");
-                                console.log("cvv_enc--->" + cvv_enc);
+                                //console.log("cvv_enc--->" + cvv_enc);
                                 if (typeof userId != "undefined") {
                                     var setUser = "Insert into Credit_card_details (User_id, Card_number, Card_name, Expiry_date, CVV_number) " +
                                         "VALUES('" + userId + "','" + card_number_enc + "','" + card_holder_name + "','" + exp_date + "','" + cvv_enc + "')";
-                                    console.log(setUser);
+                                    //console.log(setUser);
                                     mysql.insertData(function (err, result) {
                                         if (err) {
                                             console.log(err);

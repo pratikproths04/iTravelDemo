@@ -1,6 +1,5 @@
-
 var mongo = require("./mongo");
-var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
 var bcrypt = require('bcrypt-nodejs');
 
 exports.goToLogInPage = function(req,res){
@@ -30,19 +29,19 @@ exports.afterLogInPage = function(req,res){
 		var msg_payload = {
 			"email" : email
 		};
-		console.log("msg_payload"+JSON.stringify(msg_payload));
+		//console.log("msg_payload"+JSON.stringify(msg_payload));
 		mongo.connect(mongoSessionConnectURL, function(){
-			console.log('Connected to mongo at: ' + mongoSessionConnectURL);
+			//console.log('Connected to mongo at: ' + mongoSessionConnectURL);
 			var coll = mongo.collection('users');
 			coll.findOne(msg_payload, function(err, user){
-				console.log("user----->"+JSON.stringify(user));
+				//console.log("user----->"+JSON.stringify(user));
 				if (user) {
 					// This way subsequent requests will know the user is logged in.					
 					if (bcrypt.compareSync(password, user.password))
 					{
 						console.log("User sucessfully authenticated");
 						req.session.userId = user._id;
-						console.log(req.session.userId +" is stored in the session");
+						//console.log(req.session.userId +" is stored in the session");
 						json_responses = {"statusCode" : 200, "message": "LogIn sucessfully"};
 					}
 					else
