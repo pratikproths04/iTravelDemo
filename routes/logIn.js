@@ -1,5 +1,6 @@
 var mongo = require("./mongo");
-var mongoSessionConnectURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://iTravelDBUser:root@ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+//var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
 var bcrypt = require('bcrypt-nodejs');
 
 exports.goToLogInPage = function(req,res){

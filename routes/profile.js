@@ -1,9 +1,10 @@
 var mongo = require("./mongo");
 var mysql = require("./mysql");
-var mongoURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+var mongoURL = "mongodb://iTravelDBUser:root@ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+//var mongoURL = "mongodb://localhost:27017/iTravelDB";
 var ObjectId = require('mongodb').ObjectID;
 var crypto = require('crypto');
-var key = '00%i%Travel%System%00'
+var key = '00%i%Travel%System%00';
 
 exports.goToProfilePage = function(req,res){
     //Checks before redirecting whether the session is valid

@@ -16,16 +16,18 @@ var express = require('express')
   , signUp = require('./routes/signUp')
   , logIn = require('./routes/logIn')
   , home = require('./routes/home')
-  , profile = require('./routes/profile');
+  , profile = require('./routes/profile')
+  , users = require('./routes/users');
 
 /** URL for the sessions collections in mongoDB **/
-var mongoSessionConnectURL = "mongodb://ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://iTravelDBUser:root@ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+//var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
 var expressSession = require("express-session");
 var mongoStore = require("connect-mongo")(expressSession);
 var app = express();
 
 /** Assigning Port **/
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 
 /** View Engine Setup**/
 app.set('views', __dirname + '/views');
@@ -63,6 +65,9 @@ app.get('/home', home.goToHomePage);
 app.get('/profile', profile.goToProfilePage);
 app.get('/profile/getUserDetails', profile.fetchUserData);
 app.post('/profile/updateUserDetails', profile.updateUserData);
+app.get('/users', users.getAllUsers);
+app.get('/users/:email', users.getUser);
+app.post('/users/:email', users.updateUser);
 
 
 /** Error Handling **/
@@ -93,5 +98,5 @@ mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);
 	http.createServer(app).listen(app.get('port'), function(){
 		console.log('Express server listening on port ' + app.get('port'));
-	});  
+	});
 });
