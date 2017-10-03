@@ -17,17 +17,18 @@ var express = require('express')
   , logIn = require('./routes/logIn')
   , home = require('./routes/home')
   , profile = require('./routes/profile')
-  , users = require('./routes/users');
+  , users = require('./routes/users')
+  , config = require('./routes/config');
 
 /** URL for the sessions collections in mongoDB **/
-var mongoSessionConnectURL = "mongodb://iTravelDBUser:root@ec2-34-224-101-89.compute-1.amazonaws.com:27017/iTravelDB";
+var mongoSessionConnectURL = "mongodb://"+config.mongoDB.username+":"+config.mongoDB.password+"@"+config.mongoDB.host+":"+config.mongoDB.port+"/"+config.mongoDB.database;
 //var mongoSessionConnectURL = "mongodb://localhost:27017/iTravelDB";
 var expressSession = require("express-session");
 var mongoStore = require("connect-mongo")(expressSession);
 var app = express();
 
 /** Assigning Port **/
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || config.server.port);
 
 /** View Engine Setup**/
 app.set('views', __dirname + '/views');
